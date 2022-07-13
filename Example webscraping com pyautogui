@@ -1,0 +1,41 @@
+import pyautogui
+import time
+
+time.sleep(5)
+im2 = pyautogui.screenshot ("imagem.png", region = (378,200, 50, 50)) #escolher região da imagem
+
+location = pyautogui.locateOnScreen ('imagem.png') # Imagem do botão de entrada
+x, y = pyautogui.center(location) # Converta em coordenadas x, y
+pyautogui.click(location) 
+
+for i in range(0,9,1):
+    pyautogui.click(x=443, y=10) #aba de cima
+    pyautogui.click(x=1913, y=398)#selecionar aba
+    time.sleep(2)
+    pyautogui.drag(0,25,duration=2) #rolar aba
+
+    eq,dire,cima,baixo = pyautogui.locateOnScreen('imagem.png',region=(189,152, 900, 100)) # Imagem do botão de entrada
+    centro = pyautogui.center((eq,dire,cima,baixo)) # Converta em coordenadas x, y
+    pyautogui.click(centro) 
+    time.sleep(5)
+    pyautogui.click(x=733, y=14) # nova aba aberta com info
+    time.sleep(3)
+    pyautogui.click(x=1907, y=240) #selecionar aba
+    pyautogui.drag(1000,85, duration=3) #rolar aba
+
+    pyautogui.click(x=174, y=365) # ir para copiar
+    pyautogui.drag(1000,350, duration=3) #copiar info
+    pyautogui.keyDown('Ctrl')
+    pyautogui.press('c')
+    pyautogui.keyUp('Ctrl')
+    time.sleep(2)
+    pyautogui.click(x=885, y=22) #fechar aba de dados
+    time.sleep(4)
+    pyautogui.click(x=765, y=25) #aba excel
+    time.sleep(2)
+    pyautogui.click(x=82, y=344) #coluna A linha 1
+    pyautogui.press(('right',)*i)
+    
+    pyautogui.keyDown('Ctrl')
+    pyautogui.press('v')
+    pyautogui.keyUp('Ctrl')
